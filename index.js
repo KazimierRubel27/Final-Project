@@ -32,7 +32,12 @@ searchButtonEl.addEventListener("click", async function (event) {
         searchResultsEl.innerHTML = "";
         for (const result of json.results) {
             const resultEl = document.createElement("div");
-            resultEl.textContent = result.title + result["genre_ids"];
+            const imgEl = document.createElement("img");
+            imgEl.src = "https://image.tmdb.org/t/p/original/" + result.poster_path;
+            imgEl.width = "100";
+            imgEl.style.border = "1px solid red";
+            resultEl.textContent = result.title + " Genres: " + result["genre_ids"].map(id => genres[id]).join(", ");
+            resultEl.appendChild(imgEl);
             searchResultsEl.appendChild(resultEl);
         }
     }
