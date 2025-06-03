@@ -50,6 +50,7 @@ searchButtonEl.addEventListener("click", async function (event) {
     } else {
         console.log(json)
         searchResultsEl.innerHTML = "";
+        randomResultsEl.innerHTML = "";
         for (const result of json.results) {
             const resultEl = document.createElement("div");
             const imgEl = document.createElement("img");
@@ -64,6 +65,7 @@ searchButtonEl.addEventListener("click", async function (event) {
 });
 randomButtonEl.addEventListener("click", async function (event) {
     const randomMovie = await getRandomMovie();
+    searchResultsEl.innerHTML = "";
     randomResultsEl.innerHTML = "";
     const resultEl = document.createElement("div");
     const imgEl = document.createElement("img");
