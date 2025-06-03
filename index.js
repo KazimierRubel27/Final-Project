@@ -70,7 +70,7 @@ randomButtonEl.addEventListener("click", async function (event) {
     imgEl.src = "https://image.tmdb.org/t/p/original/" + randomMovie.poster_path;
     imgEl.width = "100";
 
-    resultEl.textContent = randomMovie.title + "Genre" + randomMovie["genre_ids"].map(id => genres[id]).join(", ")
+    resultEl.innerHTML = randomMovie.title + "<br> Genre: " + randomMovie["genre_ids"].map(id => genres[id]).join(", ")
     resultEl.appendChild(imgEl);
     randomResultsEl.appendChild(resultEl);
 });
