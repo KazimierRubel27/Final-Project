@@ -41,7 +41,7 @@ async function getMovieByGenre(genre = 'action') {
     await fillGenres();
     let found_genre_id = -1
     for (const [genre_id, genre_name] of Object.entries(genres)) {
-        if (genre == genre_name) {
+        if (genre.toLowerCase() == genre_name.toLowerCase()) {
             found_genre_id = genre_id;
         }
     }
@@ -109,7 +109,7 @@ randomButtonEl.addEventListener("click", async function (event) {
     randomResultsEl.appendChild(resultEl);
 });
 genreButtonEl.addEventListener("click", async function (event) {
-    const rand = await getMovieByGenre(genreInputEl.value)
+    const rand = await getMovieByGenre(genreInputEl.value || undefined)
     if (rand.length == 0) {
         console.log("No movies in that genre")
     } else {
