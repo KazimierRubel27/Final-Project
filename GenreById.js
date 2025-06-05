@@ -9,12 +9,14 @@ const genreOptions = {
 
 const genres = {}
 
-fetch(genreUrl, genreOptions)
-    .then(res => res.json())
-    .then(json => {
-        for (const g of json.genres) {
-            genres[g.id] = g.name;
-        }
-        console.log(genres)
-    })
-    .catch(err => console.error(err));
+async function fillGenres() {
+    fetch(genreUrl, genreOptions)
+        .then(res => res.json())
+        .then(json => {
+            for (const g of json.genres) {
+                genres[g.id] = g.name;
+            }
+            console.log(genres)
+        })
+        .catch(err => console.error(err));
+}

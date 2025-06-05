@@ -1,4 +1,5 @@
 async function getData(query) {
+    await fillGenres();
     const url = "https://api.themoviedb.org/3/search/movie?query=" + query.replaceAll(" ", "+");
     try {
         const response = await fetch(url, {
@@ -17,6 +18,7 @@ async function getData(query) {
     }
 }
 async function getRandomMovie() {
+    await fillGenres();
     const url = "https://api.themoviedb.org/3/movie/popular?page=" + Math.floor(Math.random() * 20 + 1);
     try {
         const response = await fetch(url, {
@@ -36,6 +38,7 @@ async function getRandomMovie() {
     }
 }
 async function getMovieByGenre(genre = 'action') {
+    await fillGenres();
     let found_genre_id = -1
     for (const [genre_id, genre_name] of Object.entries(genres)) {
         if (genre == genre_name) {
@@ -117,6 +120,7 @@ genreButtonEl.addEventListener("click", async function (event) {
             const resultEl = document.createElement("div");
             const imgEl = document.createElement("img");
             imgEl.src = "https://image.tmdb.org/t/p/original/" + result.poster_path;
+            imgEl.width = "100";
             resultEl.textContent = result.title + " Genres: " + result["genre_ids"].map(id => genres[id]).join(", ");
             resultEl.appendChild(imgEl);
             searchResultsEl.appendChild(resultEl);
