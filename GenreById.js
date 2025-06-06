@@ -10,13 +10,15 @@ const genreOptions = {
 const genres = {}
 
 async function fillGenres() {
-    fetch(genreUrl, genreOptions)
-        .then(res => res.json())
-        .then(json => {
-            for (const g of json.genres) {
-                genres[g.id] = g.name;
-            }
-            console.log(genres)
-        })
-        .catch(err => console.error(err));
+    try {
+        const result = await fetch(genreUrl, genreOptions)
+        const json = await result.json()
+        for (const g of json.genres) {
+            genres[g.id] = g.name;
+        }
+        console.log(genres)
+    }
+    catch (err) {
+        console.error(err)
+    }
 }

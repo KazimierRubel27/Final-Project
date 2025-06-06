@@ -14,3 +14,7 @@ html {
     size-adjust: 30px;
     font: 25px sans-serif;
 }
+
+.hidden {
+    display: none;
+}

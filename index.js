@@ -65,6 +65,20 @@ async function getMovieByGenre(genre = 'action') {
         console.error(error.message);
     }
 }
+async function loadGenreList() {
+    await fillGenres();
+    searchResultsEl.innerHTML = "";
+    randomResultsEl.innerHTML = "";
+    genresDisplayEl.innerHTML = "<p>Available Genres</p>";
+    const ul = document.createElement("ul");
+    for (const [genre_id, genre_name] of Object.entries(genres)) {
+        const li = document.createElement("li");
+        li.textContent = `genre Name: ${genre_name} genre Id: ${genre_id}`;
+        ul.appendChild(li);
+    }
+    genresDisplayEl.appendChild(ul);
+};
+
 
 const searchInputEl = document.getElementById("search-input");
 const searchButtonEl = document.getElementById("search-button");
@@ -75,7 +89,7 @@ const genreInputEl = document.getElementById("genre-input");
 const genreButtonEl = document.getElementById("genre-button");
 const showGenresButtonEl = document.getElementById("show-genres");
 const genresDisplayEl = document.getElementById("genres-list");
-
+loadGenreList();
 
 searchButtonEl.addEventListener("click", async function (event) {
     const json = await getData(searchInputEl.value)
@@ -130,15 +144,10 @@ genreButtonEl.addEventListener("click", async function (event) {
     }
 });
 showGenresButtonEl.addEventListener("click", async function () {
-    await fillGenres();
+    // loadGenreList();
     searchResultsEl.innerHTML = "";
     randomResultsEl.innerHTML = "";
-    genresDisplayEl.innerHTML = "<p>Available Genres</p>";
-    const ul = document.createElement("ul");
-    for (const [genre_id, genre_name] of Object.entries(genres)) {
-        const li = document.createElement("li");
-        li.textContent = `genre Name: ${genre_name} genre Id: ${genre_id}`;
-        ul.appendChild(li);
-    }
-    genresDisplayEl.appendChild(ul);
-});
+    const info = document.getElementById("genres-list");
+    info.classList.toggle("hidden");
+}
+);
