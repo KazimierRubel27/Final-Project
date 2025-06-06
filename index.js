@@ -73,6 +73,8 @@ const randomButtonEl = document.getElementById("random-button");
 const randomResultsEl = document.getElementById("random-results");
 const genreInputEl = document.getElementById("genre-input");
 const genreButtonEl = document.getElementById("genre-button");
+const showGenresButtonEl = document.getElementById("show-genres");
+const genresDisplayEl = document.getElementById("genres-list");
 
 
 searchButtonEl.addEventListener("click", async function (event) {
@@ -126,4 +128,17 @@ genreButtonEl.addEventListener("click", async function (event) {
             searchResultsEl.appendChild(resultEl);
         }
     }
+});
+showGenresButtonEl.addEventListener("click", async function () {
+    await fillGenres();
+    searchResultsEl.innerHTML = "";
+    randomResultsEl.innerHTML = "";
+    genresDisplayEl.innerHTML = "<p>Available Genres</p>";
+    const ul = document.createElement("ul");
+    for (const [genre_id, genre_name] of Object.entries(genres)) {
+        const li = document.createElement("li");
+        li.textContent = `genre Name: ${genre_name} genre Id: ${genre_id}`;
+        ul.appendChild(li);
+    }
+    genresDisplayEl.appendChild(ul);
 });
