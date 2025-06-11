@@ -18,3 +18,33 @@ html {
 .hidden {
     display: none;
 }
+
+html {
+    background-color: grey;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#search-button {
+    font-size: 20px;
+    border-radius: 10px;
+    border-color: rgb(81, 0, 255);
+}
+
+#random-button {
+    size-adjust: 30px;
+    font: 25px sans-serif;
+}
+
+.search-info,
+.random-info,
+.genre-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
